@@ -1,195 +1,110 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fenrix 公式サイト</title>
-<style>
-  :root {
-    --bg-color-light: #fff;
-    --text-color-light: #222;
-    --header-bg-light: #f0f0f0;
-    --nav-bg-light: #e0e0e0;
-    --link-color-light: #1e90ff;
-    
-    --bg-color-dark: #121212;
-    --text-color-dark: #eee;
-    --header-bg-dark: #2a2a2a;
-    --nav-bg-dark: #222;
-    --link-color-dark: #1e90ff;
-  }
-
-  body {
-    margin: 0; padding: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-color-dark);
-    color: var(--text-color-dark);
-    transition: background 0.3s, color 0.3s;
-  }
-  header {
-    background: var(--header-bg-dark);
-    padding: 20px;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 3px;
-    transition: background 0.3s;
-  }
-  nav {
-    background: var(--nav-bg-dark);
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 15px 0;
-    transition: background 0.3s;
-  }
-  nav a {
-    color: var(--text-color-dark);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-  nav a:hover {
-    color: var(--link-color-dark);
-  }
-  main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-  section {
-    margin-bottom: 50px;
-  }
-  h2 {
-    border-bottom: 2px solid var(--link-color-dark);
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-  }
-  footer {
-    background: var(--nav-bg-dark);
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    color: #777;
-    transition: background 0.3s;
-  }
-  ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-  /* Light mode styles */
-  body.light {
-    background: var(--bg-color-light);
-    color: var(--text-color-light);
-  }
-  body.light header {
-    background: var(--header-bg-light);
-  }
-  body.light nav {
-    background: var(--nav-bg-light);
-  }
-  body.light nav a {
-    color: var(--text-color-light);
-  }
-  body.light nav a:hover {
-    color: var(--link-color-light);
-  }
-  body.light h2 {
-    border-color: var(--link-color-light);
-  }
-  body.light footer {
-    background: var(--nav-bg-light);
-    color: #444;
-  }
-
-  /* Toggle button */
-  #toggleTheme {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: #1e90ff;
-    border: none;
-    padding: 8px 12px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 4px;
-    z-index: 100;
-    user-select: none;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fenrix 公式サイト</title>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #121212;
+      --text-light: #000000;
+      --text-dark: #ffffff;
+      --accent: #4f8aff;
+    }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    header {
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .container {
+      padding: 2rem;
+    }
+    button.toggle-theme {
+      background: none;
+      border: 1px solid white;
+      color: white;
+      padding: 0.3rem 1rem;
+      cursor: pointer;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+    }
+  </style>
 </head>
 <body>
-<button id="toggleTheme">ライトモード切替</button>
+  <header>
+    <nav>
+      <div><strong>🐺 Fenrix</strong> 公式サイト</div>
+      <button class="toggle-theme">ダークモード</button>
+    </nav>
+  </header>
 
-<header> Fenrix</header>
-<nav>
-  <a href="#about">Fenrixとは</a>
-  <a href="#features">機能一覧</a>
-  <a href="#tos">利用規約</a>
-  <a href="#developers">デベロッパー</a>
-  <a href="#download">ダウンロード</a>
-</nav>
+  <div class="container">
+    <div class="section">
+      <h1>Fenrixと共に、新たな冒険を</h1>
+      <p>Fenrixは、未来の開発者と共に進化し続けるアプリプラットフォームです。</p>
+    </div>
 
-<main>
-  <section id="about">
-    <h2>Fenrixとは</h2>
-    <p>FenrixはWindows 11 64bit専用のモダンなアプリケーション＆プラットフォームです。Fenrixと共に、新たな冒険を。</p>
-    <p>公式Discordを使った高速で安全な通信と、Fenrix+による優先サブスクリプション機能を提供します。</p>
-  </section>
+    <div class="section">
+      <h2>主な機能</h2>
+      <ul>
+        <li>Windows 11 (64bit) 専用</li>
+        <li>CustomTkinter ベースのGUI</li>
+        <li>Fenrix App, Fenrix Tool などの統合</li>
+        <li>ユーザーアカウント切り替え・アップデート管理（FAS）</li>
+        <li>サーバー側で管理された柔軟なメニュー更新</li>
+      </ul>
+    </div>
 
-  <section id="features">
-    <h2>機能一覧</h2>
-    <ul>
-      <li>ユーザー管理・認証システム</li>
-      <li>Fenrix+による優先・高速通信</li>
-      <li>公式Discordチャンネルによる暗号化通信</li>
-      <li>リアルタイムのエラーロギング（サイレント）</li>
-      <li>Fenrix App：モダンUI、アカウント管理</li>
-      <li>2段階認証対応でセキュアログイン</li>
-      <li>利用規約厳守、禁止行為対策強化</li>
-    </ul>
-  </section>
+    <div class="section">
+      <h2>開発者</h2>
+      <ul>
+        <li><strong>yshi</strong>（オーナー）</li>
+        <li><strong>flimsy</strong>（副オーナー）</li>
+      </ul>
+    </div>
 
-  <section id="tos">
-    <h2>利用規約</h2>
-    <p>Fenrixをご利用いただく前に、必ず利用規約をお読みください。利用規約に同意いただけない場合はサービスの利用をお控えください。</p>
-    <p>・禁止行為：サーバー過負荷、乗っ取り、違法行為、迷惑行為など<br />
-       ・返金不可<br />
-       ・個人情報は厳重管理<br />
-       など</p>
-  </section>
+    <div class="section">
+      <h2>連絡</h2>
+      <p>ご質問・ご意見は Discord にてお知らせください。</p>
+    </div>
+  </div>
 
-  <section id="developers">
-    <h2>デベロッパー</h2>
-    <ul>
-      <li>yshi (オーナー兼主要デベロッパー)</li>
-      <li>flimsy (副オーナー)</li>
-    </ul>
-  </section>
+  <footer>
+    &copy; 2025 Fenrix Project. All rights reserved.
+  </footer>
 
-  <section id="download">
-    <h2>ダウンロード</h2>
-    <p>Fenrix App最新版を下記よりダウンロードしてください。</p>
-    <p><a href="https://download.fenrix.f5.si" style="color:#1e90ff;">https://download.fenrix.f5.si</a></p>
-    <p>※ ダウンロードには認証コードが必要です。Fenrix公式Discordで発行してください。</p>
-  </section>
-</main>
-
-<footer>
-  &copy; 2025 Fenrix. All rights reserved.
-</footer>
-
-<script>
-  const toggleBtn = document.getElementById('toggleTheme');
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    if(document.body.classList.contains('light')) {
-      toggleBtn.textContent = 'ダークモード切替';
-    } else {
-      toggleBtn.textContent = 'ライトモード切替';
-    }
-  });
-</script>
+  <script>
+    const toggleBtn = document.querySelector('.toggle-theme');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? 'ライトモード' : 'ダークモード';
+    });
+  </script>
 </body>
 </html>
