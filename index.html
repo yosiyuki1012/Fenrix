@@ -1,110 +1,108 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fenrix 公式サイト</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-light: #ffffff;
-      --bg-dark: #121212;
-      --text-light: #000000;
-      --text-dark: #ffffff;
-      --accent: #4f8aff;
+      --bg-dark: #0d0d0d;
+      --bg-light: #f0f0f0;
+      --text-dark: #e0e0e0;
+      --text-light: #1a1a1a;
+      --accent: #00c8ff;
     }
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-light);
-      margin: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark {
+    [data-theme="dark"] {
       background-color: var(--bg-dark);
       color: var(--text-dark);
     }
-    header {
-      padding: 1rem;
-      background: var(--accent);
-      color: white;
+    [data-theme="light"] {
+      background-color: var(--bg-light);
+      color: var(--text-light);
     }
-    nav {
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: 0.3s;
+    }
+    header {
+      background-color: #111;
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .container {
-      padding: 2rem;
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--accent);
     }
-    button.toggle-theme {
+    .toggle-theme {
       background: none;
-      border: 1px solid white;
-      color: white;
-      padding: 0.3rem 1rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 10px;
       cursor: pointer;
     }
-    h1 {
-      margin-top: 0;
+    .hero {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .hero h1 {
+      font-size: 2.5em;
     }
     .section {
-      margin-bottom: 2rem;
+      margin: 50px;
+      padding: 20px;
+      border-left: 3px solid var(--accent);
     }
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #eee;
+      padding: 20px;
+      font-size: 0.9em;
+      color: gray;
     }
   </style>
 </head>
 <body>
   <header>
+    <div>🐺 <strong>Fenrix</strong></div>
     <nav>
-      <div><strong>🐺 Fenrix</strong> 公式サイト</div>
-      <button class="toggle-theme">ダークモード</button>
+      <a href="#">ホーム</a>
+      <a href="#">機能</a>
+      <a href="#">ダウンロード</a>
+      <a href="#">開発者</a>
     </nav>
+    <button class="toggle-theme" onclick="toggleTheme()">切替</button>
   </header>
 
-  <div class="container">
-    <div class="section">
-      <h1>Fenrixと共に、新たな冒険を</h1>
-      <p>Fenrixは、未来の開発者と共に進化し続けるアプリプラットフォームです。</p>
-    </div>
+  <section class="hero">
+    <h1>Fenrixと共に、新たな冒険を</h1>
+    <p>Windows 11 (64bit) 専用アプリケーション</p>
+  </section>
 
-    <div class="section">
-      <h2>主な機能</h2>
-      <ul>
-        <li>Windows 11 (64bit) 専用</li>
-        <li>CustomTkinter ベースのGUI</li>
-        <li>Fenrix App, Fenrix Tool などの統合</li>
-        <li>ユーザーアカウント切り替え・アップデート管理（FAS）</li>
-        <li>サーバー側で管理された柔軟なメニュー更新</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>開発者</h2>
-      <ul>
-        <li><strong>yshi</strong>（オーナー）</li>
-        <li><strong>flimsy</strong>（副オーナー）</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>連絡</h2>
-      <p>ご質問・ご意見は Discord にてお知らせください。</p>
-    </div>
-  </div>
+  <section class="section">
+    <h2>主要機能</h2>
+    <ul>
+      <li>アカウント管理（Fenrix Account）</li>
+      <li>Fenrix+ プレミアムモード</li>
+      <li>カスタムUIランチャー</li>
+      <li>セキュリティ保護（FSS）</li>
+    </ul>
+  </section>
 
   <footer>
-    &copy; 2025 Fenrix Project. All rights reserved.
+    © 2025 Fenrix Project — Developed by yshi & flimsy
   </footer>
 
   <script>
-    const toggleBtn = document.querySelector('.toggle-theme');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      toggleBtn.textContent = document.body.classList.contains('dark') ? 'ライトモード' : 'ダークモード';
-    });
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+    }
   </script>
 </body>
 </html>
