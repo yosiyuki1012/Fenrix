@@ -1,108 +1,250 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="dark">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fenrix 公式サイト</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-dark: #0d0d0d;
-      --bg-light: #f0f0f0;
-      --text-dark: #e0e0e0;
-      --text-light: #1a1a1a;
-      --accent: #00c8ff;
-    }
-    [data-theme="dark"] {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    [data-theme="light"] {
-      background-color: var(--bg-light);
-      color: var(--text-light);
-    }
-    body {
-      font-family: 'Orbitron', sans-serif;
-      margin: 0;
-      padding: 0;
-      transition: 0.3s;
-    }
-    header {
-      background-color: #111;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: var(--accent);
-    }
-    .toggle-theme {
-      background: none;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-    .hero {
-      text-align: center;
-      margin-top: 100px;
-    }
-    .hero h1 {
-      font-size: 2.5em;
-    }
-    .section {
-      margin: 50px;
-      padding: 20px;
-      border-left: 3px solid var(--accent);
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: gray;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fenrix 公式サイト</title>
+<style>
+  :root {
+    --bg-color-light: #fff;
+    --text-color-light: #222;
+    --header-bg-light: #f0f0f0;
+    --nav-bg-light: #e0e0e0;
+    --link-color-light: #1e90ff;
+
+    --bg-color-dark: #121212;
+    --text-color-dark: #eee;
+    --header-bg-dark: #2a2a2a;
+    --nav-bg-dark: #222;
+    --link-color-dark: #1e90ff;
+  }
+
+  body {
+    margin: 0; padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    transition: background 0.3s, color 0.3s;
+  }
+  header {
+    background: var(--header-bg-dark);
+    padding: 20px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    transition: background 0.3s;
+  }
+  nav {
+    background: var(--nav-bg-dark);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+    transition: background 0.3s;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--text-color-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+  nav a:hover {
+    color: var(--link-color-dark);
+  }
+  main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  section {
+    margin-bottom: 50px;
+  }
+  h2 {
+    border-bottom: 2px solid var(--link-color-dark);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+  footer {
+    background: var(--nav-bg-dark);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #777;
+    transition: background 0.3s;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+
+  /* Light mode styles */
+  body.light {
+    background: var(--bg-color-light);
+    color: var(--text-color-light);
+  }
+  body.light header {
+    background: var(--header-bg-light);
+  }
+  body.light nav {
+    background: var(--nav-bg-light);
+  }
+  body.light nav a {
+    color: var(--text-color-light);
+  }
+  body.light nav a:hover {
+    color: var(--link-color-light);
+  }
+  body.light h2 {
+    border-color: var(--link-color-light);
+  }
+  body.light footer {
+    background: var(--nav-bg-light);
+    color: #444;
+  }
+
+  /* Responsive styles - デフォルトはPCモードなので無効化 */
+  /* スマホモード時に適用する */
+  body.smartphone nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  body.smartphone header {
+    font-size: 1.6rem;
+    padding: 15px;
+    letter-spacing: 1.5px;
+  }
+  body.smartphone main {
+    margin: 20px 10px;
+    padding: 0 10px;
+  }
+  body.smartphone section {
+    margin-bottom: 30px;
+  }
+
+  /* ボタン */
+  #toggleTheme, #toggleDevice {
+    position: fixed;
+    top: 10px;
+    background: #1e90ff;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 100;
+    user-select: none;
+  }
+  #toggleTheme {
+    right: 10px;
+  }
+  #toggleDevice {
+    right: 150px;
+  }
+
+</style>
 </head>
 <body>
-  <header>
-    <div>🐺 <strong>Fenrix</strong></div>
-    <nav>
-      <a href="#">ホーム</a>
-      <a href="#">機能</a>
-      <a href="#">ダウンロード</a>
-      <a href="#">開発者</a>
-    </nav>
-    <button class="toggle-theme" onclick="toggleTheme()">切替</button>
-  </header>
 
-  <section class="hero">
-    <h1>Fenrixと共に、新たな冒険を</h1>
-    <p>Windows 11 (64bit) 専用アプリケーション</p>
+<button id="toggleDevice">スマホモード切替</button>
+<button id="toggleTheme">ライトモード切替</button>
+
+<header>Fenrix</header>
+<nav>
+  <a href="#about">Fenrixとは</a>
+  <a href="#features">機能一覧</a>
+  <a href="#tos">利用規約</a>
+  <a href="#developers">デベロッパー</a>
+  <a href="#download">ダウンロード</a>
+</nav>
+
+<main>
+  <section id="about">
+    <h2>Fenrixとは</h2>
+    <p>FenrixはWindows 11 64bit専用のモダンなアプリケーション＆プラットフォームです。Fenrixと共に、新たな冒険を。</p>
+    <p>公式Discordを使った高速で安全な通信と、Fenrix+による優先サブスクリプション機能を提供します。</p>
   </section>
 
-  <section class="section">
-    <h2>主要機能</h2>
+  <section id="features">
+    <h2>機能一覧</h2>
     <ul>
-      <li>アカウント管理（Fenrix Account）</li>
-      <li>Fenrix+ プレミアムモード</li>
-      <li>カスタムUIランチャー</li>
-      <li>セキュリティ保護（FSS）</li>
+      <li>ユーザー管理・認証システム</li>
+      <li>Fenrix+による優先・高速通信</li>
+      <li>公式Discordチャンネルによる暗号化通信</li>
+      <li>リアルタイムのエラーロギング（サイレント）</li>
+      <li>Fenrix App：モダンUI、アカウント管理</li>
+      <li>2段階認証対応でセキュアログイン</li>
+      <li>利用規約厳守、禁止行為対策強化</li>
     </ul>
   </section>
 
-  <footer>
-    © 2025 Fenrix Project — Developed by yshi & flimsy
-  </footer>
+  <section id="tos">
+    <h2>利用規約</h2>
+    <p>Fenrixをご利用いただく前に、必ず利用規約をお読みください。利用規約に同意いただけない場合はサービスの利用をお控えください。</p>
+    <p>・禁止行為：サーバー過負荷、乗っ取り、違法行為、迷惑行為など<br />
+       ・返金不可<br />
+       ・個人情報は厳重管理<br />
+       など</p>
+  </section>
 
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
+  <section id="developers">
+    <h2>デベロッパー</h2>
+    <ul>
+      <li>yshi (オーナー兼主要デベロッパー)</li>
+      <li>flimsy (副オーナー)</li>
+    </ul>
+  </section>
+
+  <section id="download">
+    <h2>ダウンロード</h2>
+    <p>Fenrix Appは公式Discordのみからダウンロード可能です。</p>
+    <p><a href="#" id="discordLink">公式Discordはこちら</a></p>
+    <p>※ ダウンロードには認証コードが必要です。公式Discord内で発行してください。</p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Fenrix. All rights reserved.
+</footer>
+
+<script>
+  // モード切替ボタン（ダーク・ライト）
+  const toggleBtn = document.getElementById('toggleTheme');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    if(document.body.classList.contains('light')) {
+      toggleBtn.textContent = 'ダークモード切替';
+    } else {
+      toggleBtn.textContent = 'ライトモード切替';
     }
-  </script>
+  });
+
+  // デバイス切替ボタン（スマホモード・PCモード）
+  const deviceBtn = document.getElementById('toggleDevice');
+  deviceBtn.addEventListener('click', () => {
+    document.body.classList.toggle('smartphone');
+    if(document.body.classList.contains('smartphone')) {
+      deviceBtn.textContent = 'PCモード切替';
+    } else {
+      deviceBtn.textContent = 'スマホモード切替';
+    }
+  });
+
+  // 公式Discordリンククリック時のポップアップ確認
+  const discordLink = document.getElementById('discordLink');
+  discordLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    const confirmUse = confirm('公式Discordにアクセスします。\n利用規約を厳守してください。よろしいですか？');
+    if(confirmUse) {
+      window.open('https://discord.gg/7ravaytn3E', '_blank');
+    }
+  });
+</script>
 </body>
 </html>
