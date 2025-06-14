@@ -5,204 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fenrix 公式サイト</title>
 <style>
-  /* 基本リセット */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
+  /* --- ここに共通スタイルを記述（後述） --- */
+  :root {
+    --bg-color-light: #fff;
+    --text-color-light: #222;
+    --header-bg-light: #f0f0f0;
+    --nav-bg-light: #e0e0e0;
+    --link-color-light: #1e90ff;
+
+    --bg-color-dark: #121212;
+    --text-color-dark: #eee;
+    --header-bg-dark: #2a2a2a;
+    --nav-bg-dark: #222;
+    --link-color-dark: #1e90ff;
   }
   body {
+    margin: 0; padding: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #111;
-    color: #eee;
-    line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
-    padding: 1rem;
+    background: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    transition: background 0.3s, color 0.3s;
   }
-  body.light {
-    background-color: #f0f0f0;
-    color: #222;
-  }
-
   header {
-    font-size: 2.5rem;
+    background: var(--header-bg-dark);
+    padding: 20px;
+    text-align: center;
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #4caf50;
+    letter-spacing: 3px;
+    transition: background 0.3s;
   }
-
   nav {
-    margin-bottom: 1.5rem;
-    text-align: center;
+    background: var(--nav-bg-dark);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+    transition: background 0.3s;
   }
   nav a {
-    color: #4caf50;
+    color: var(--text-color-dark);
     text-decoration: none;
-    margin: 0 1rem;
     font-weight: 600;
-    cursor: pointer;
+    transition: color 0.3s;
   }
   nav a:hover {
-    text-decoration: underline;
+    color: var(--link-color-dark);
   }
-
-  /* ローディングバー */
-  #loadingBarContainer {
-    width: 100%;
-    height: 5px;
-    background: #333;
-    position: fixed;
-    top: 0; left: 0;
-    z-index: 9999;
-  }
-  #loadingBar {
-    width: 0;
-    height: 100%;
-    background: #4caf50;
-    transition: width 0.2s ease;
-  }
-
-  button {
-    cursor: pointer;
-    padding: 0.4rem 1rem;
-    margin: 0 0.5rem 1rem 0.5rem;
-    border: none;
-    background: #4caf50;
-    color: white;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-  }
-  button:hover {
-    background: #45a049;
-  }
-
   main {
     max-width: 900px;
-    margin: auto;
+    margin: 40px auto;
+    padding: 0 20px;
   }
   section {
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: #222;
-    border-radius: 10px;
+    margin-bottom: 50px;
   }
-  body.light section {
-    background: #fff;
-    color: #222;
-    box-shadow: 0 0 5px #aaa;
+  h2 {
+    border-bottom: 2px solid var(--link-color-dark);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
   }
-
-  /* アプデログ */
-  #update-log {
-    background: #111;
-    padding: 1rem;
-    border-radius: 8px;
-    max-height: 300px;
-    overflow-y: auto;
-    font-family: monospace;
-    font-size: 0.9rem;
-    white-space: pre-wrap;
-  }
-  body.light #update-log {
-    background: #eee;
-  }
-
-  /* 低スペックPCモード（スマホ風） */
-  body.low-spec-mode {
-    font-size: 14px;
-  }
-  body.low-spec-mode header {
-    font-size: 1.8rem;
-  }
-  body.low-spec-mode nav a {
-    margin: 0 0.5rem;
-    font-size: 0.9rem;
-  }
-  body.low-spec-mode section {
-    padding: 0.6rem;
-  }
-
   footer {
+    background: var(--nav-bg-dark);
     text-align: center;
-    margin-top: 3rem;
+    padding: 20px;
     font-size: 0.9rem;
-    color: #666;
+    color: #777;
+    transition: background 0.3s;
   }
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  /* Light mode styles */
+  body.light {
+    background: var(--bg-color-light);
+    color: var(--text-color-light);
+  }
+  body.light header {
+    background: var(--header-bg-light);
+  }
+  body.light nav {
+    background: var(--nav-bg-light);
+  }
+  body.light nav a {
+    color: var(--text-color-light);
+  }
+  body.light nav a:hover {
+    color: var(--link-color-light);
+  }
+  body.light h2 {
+    border-color: var(--link-color-light);
+  }
+  body.light footer {
+    background: var(--nav-bg-light);
+    color: #444;
+  }
+
+  /* Toggle button */
+  #toggleTheme {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #1e90ff;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 100;
+    user-select: none;
+  }
+
+  /* Discord link style */
+  .discord-link {
+    color: var(--link-color-dark);
+    cursor: pointer;
+    font-weight: 700;
+  }
+  body.light .discord-link {
+    color: var(--link-color-light);
+  }
+
 </style>
 </head>
 <body>
 
-<!-- ローディングバー -->
-<div id="loadingBarContainer"><div id="loadingBar"></div></div>
-
-<!-- モード切替ボタン -->
-<div style="text-align:center;">
-  <button id="toggleLowSpecMode">スマホモード切替</button>
-  <button id="toggleTheme">ライトモード切替</button>
-</div>
+<button id="toggleTheme">ライトモード切替</button>
 
 <header>Fenrix</header>
 
 <nav>
-  <a href="#about">Fenrixとは</a>
-  <a href="#features">機能一覧</a>
-  <a href="#tos">利用規約</a>
-  <a href="#developers">デベロッパー</a>
-  <a href="#" id="downloadLink">ダウンロード</a>
-  <a href="#" id="discordLink">公式Discord</a>
+  <a href="index.html">ホーム</a>
+  <a href="updates.html">アップデートログ</a>
+  <a href="tos.html">利用規約</a>
+  <a href="download.html">ダウンロード</a>
 </nav>
 
 <main>
-  <section id="about">
+  <section>
     <h2>Fenrixとは</h2>
-    <p>Fenrixは安全で便利なアプリケーション管理システムです。公式Discordを介して認証コードを取得し、正規ユーザーのみが利用可能です。</p>
+    <p>FenrixはWindows 11 64bit専用のモダンなアプリケーション＆プラットフォームです。Fenrixと共に、新たな冒険を。</p>
+    <p>公式Discordを使った高速で安全な通信と、Fenrix+による優先サブスクリプション機能を提供します。</p>
+    <p>公式Discord：<span class="discord-link" id="discordLink">https://discord.gg/7ravaytn3E</span></p>
   </section>
 
-  <section id="features">
+  <section>
     <h2>機能一覧</h2>
     <ul>
-      <li>安全な認証コードシステム（Discord連携）</li>
-      <li>ダークモード / ライトモード切替</li>
-      <li>スマホモード（低スペックPCモード）切替</li>
-      <li>公式Discordでのユーザーサポート</li>
-      <li>アプデログ（簡単編集可能）</li>
-      <li>ローディングバーによる長い処理の進捗表示</li>
+      <li>ユーザー管理・認証システム</li>
+      <li>Fenrix+による優先・高速通信</li>
+      <li>公式Discordチャンネルによる暗号化通信</li>
+      <li>リアルタイムのエラーロギング（サイレント）</li>
+      <li>Fenrix App：モダンUI、アカウント管理</li>
+      <li>2段階認証対応でセキュアログイン</li>
+      <li>利用規約厳守、禁止行為対策強化</li>
     </ul>
   </section>
 
-  <section id="tos">
-    <h2>利用規約</h2>
-    <p>Fenrix公式Discord及び関連サービスの利用にあたり、以下の規約を厳守してください。</p>
-    <ul>
-      <li>不正アクセス禁止</li>
-      <li>認証コードの第三者への譲渡禁止</li>
-      <li>利用規約違反が確認された場合、サービス利用停止の対象となります</li>
-      <li>著作権、知的財産権の尊重</li>
-      <li>公式Discordでのマナーを守り、誹謗中傷や荒らし行為を行わない</li>
-      <li>アップデート・ダウンロードは必ず公式Discordから行うこと</li>
-    </ul>
-    <p>以上を守り、安全にFenrixをお楽しみください。</p>
-  </section>
-
-  <section id="developers">
-    <h2>デベロッパー</h2>
-    <ul>
-      <li>yshi（オーナー）</li>
-      <li>flimsy（副オーナー）</li>
-    </ul>
-  </section>
-
-  <section id="update-log">
-    <h2>アップデートログ</h2>
-    <pre>
-2025-06-14  Ver1.3.0 リリース
-・公式Discord認証コード導入
-・スマホモード（低スペックPCモード）切替追加
-・ダークモード / ライトモード切替対応
-・ローディングバー実装
-・利用規約ポップアップ導入
-    </pre>
-  </section>
 </main>
 
 <footer>
@@ -210,58 +171,71 @@
 </footer>
 
 <script>
-  // ローディングバーシミュレーション
-  let loadWidth = 0;
-  const loadingBar = document.getElementById('loadingBar');
-  function loadingProgress() {
-    if(loadWidth >= 100) {
-      document.getElementById('loadingBarContainer').style.display = 'none';
-      clearInterval(loadingInterval);
-      return;
-    }
-    loadWidth += 2 + Math.random() * 5;
-    if(loadWidth > 100) loadWidth = 100;
-    loadingBar.style.width = loadWidth + '%';
-  }
-  const loadingInterval = setInterval(loadingProgress, 100);
-
-  // ダーク／ライトモード切替
-  const toggleTheme = document.getElementById('toggleTheme');
-  toggleTheme.addEventListener('click', () => {
+  // モード切り替え
+  const toggleBtn = document.getElementById('toggleTheme');
+  toggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('light');
-    toggleTheme.textContent = document.body.classList.contains('light') ? 'ダークモード切替' : 'ライトモード切替';
-  });
-
-  // スマホモード（低スペックPCモード）切替
-  const toggleLowSpecMode = document.getElementById('toggleLowSpecMode');
-  toggleLowSpecMode.addEventListener('click', () => {
-    if(document.body.classList.contains('low-spec-mode')) {
-      document.body.classList.remove('low-spec-mode');
-      toggleLowSpecMode.textContent = 'スマホモード切替';
-      toggleTheme.style.display = 'inline-block';
+    if(document.body.classList.contains('light')) {
+      toggleBtn.textContent = 'ダークモード切替';
     } else {
-      document.body.classList.add('low-spec-mode');
-      toggleLowSpecMode.textContent = 'PCモード切替';
-      toggleTheme.style.display = 'none'; // スマホモード時はテーマ切替非表示
+      toggleBtn.textContent = 'ライトモード切替';
     }
   });
 
-  // 公式Discordリンクのポップアップ確認
+  // Discordリンククリック時の利用規約警告
   const discordLink = document.getElementById('discordLink');
-  discordLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    if(confirm('公式Discordを開きます。\n利用規約を厳守してください。よろしいですか？')) {
+  discordLink.addEventListener('click', () => {
+    if(confirm('公式Discordの利用規約を厳守してください。\n規約に同意しますか？')) {
       window.open('https://discord.gg/7ravaytn3E', '_blank');
     }
   });
 
-  // ダウンロードリンクも公式Discordへ誘導（認証コードはDiscordで取得）
-  const downloadLink = document.getElementById('downloadLink');
-  downloadLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    if(confirm('ダウンロードには公式Discordで認証コードを取得する必要があります。\n公式Discordを開きますか？')) {
-      window.open('https://discord.gg/7ravaytn3E', '_blank');
+  // BGM (簡易ループ再生)
+  const bgmList = [
+    'audio/soviet.mp3',
+    'audio/tung_tung_safol.mp3',
+    'audio/bombardino_crocodilo.mp3',
+    'audio/ballerina_capucina.mp3',
+    'audio/cappuccino_assassie.mp3'
+  ];
+  let bgmIndex = 0;
+  const bgmAudio = new Audio();
+  bgmAudio.src = bgmList[bgmIndex];
+  bgmAudio.loop = false;
+  bgmAudio.volume = 0.3;
+  bgmAudio.play();
+
+  bgmAudio.addEventListener('ended', () => {
+    bgmIndex = (bgmIndex + 1) % bgmList.length;
+    bgmAudio.src = bgmList[bgmIndex];
+    bgmAudio.play();
+  });
+
+  // BGMオンオフボタン追加
+  const bgmToggleBtn = document.createElement('button');
+  bgmToggleBtn.textContent = 'BGM OFF';
+  bgmToggleBtn.style.position = 'fixed';
+  bgmToggleBtn.style.top = '50px';
+  bgmToggleBtn.style.right = '10px';
+  bgmToggleBtn.style.background = '#1e90ff';
+  bgmToggleBtn.style.color = 'white';
+  bgmToggleBtn.style.border = 'none';
+  bgmToggleBtn.style.padding = '8px 12px';
+  bgmToggleBtn.style.borderRadius = '4px';
+  bgmToggleBtn.style.cursor = 'pointer';
+  bgmToggleBtn.style.zIndex = '100';
+  document.body.appendChild(bgmToggleBtn);
+
+  let isBgmPlaying = true;
+  bgmToggleBtn.addEventListener('click', () => {
+    if(isBgmPlaying) {
+      bgmAudio.pause();
+      bgmToggleBtn.textContent = 'BGM ON';
+    } else {
+      bgmAudio.play();
+      bgmToggleBtn.textContent = 'BGM OFF';
     }
+    isBgmPlaying = !isBgmPlaying;
   });
 </script>
 
